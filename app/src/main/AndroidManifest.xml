@@ -17,7 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".profile.profile"></activity>
+        <activity android:name=".profilePage.profile"></activity>
+        <activity android:name=".excerciseLogging.logger"></activity>
+        <activity android:name=".Social.socialFeed"></activity>
     </application>
 
 </manifest>

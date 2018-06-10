@@ -1,4 +1,4 @@
-package com.example.nabee.gymsocialmedia.profile;
+package com.example.nabee.gymsocialmedia.profilePage;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
