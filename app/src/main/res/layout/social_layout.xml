@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/social"
+        android:id="@+id/socialTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Social Feed"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="274dp" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="HELLO SOCIAL ACTIVITY" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/botBarContainer">
+
+        <android.support.design.widget.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/botNavBar"
+            android:background="@drawable/grey_border_top"
+            app:menu="@menu/bot_nav_bar_items">
+
+        </android.support.design.widget.BottomNavigationView>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
