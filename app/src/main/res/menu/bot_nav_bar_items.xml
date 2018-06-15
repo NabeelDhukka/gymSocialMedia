@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/socialFeed"
+        android:title="Feed"
+        android:icon="@drawable/ic_feed">
+
+    </item>
+
+    <item
+        android:id="@+id/logger"
+        android:title="Logger"
+        android:icon="@drawable/ic_log">
+
+    </item>
+
+    <item
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_profile">
+
+    </item>
+</menu>
