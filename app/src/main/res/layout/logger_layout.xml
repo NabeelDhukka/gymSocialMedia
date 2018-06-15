@@ -6,13 +6,69 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/loggerTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="HELLO LOGGER ACTIVITY" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/botBarContainer">
+
+
+        <EditText
+            android:id="@+id/exerciseName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="75dp"
+            android:ems="10"
+            android:hint="name of excercise"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/exerciseName"
+            android:layout_alignStart="@+id/exerciseName"
+            android:layout_below="@+id/exerciseName"
+            android:layout_marginTop="45dp"
+            android:ems="10"
+            android:hint="weight"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/weight"
+            android:layout_alignStart="@+id/weight"
+            android:layout_below="@+id/weight"
+            android:layout_marginTop="34dp"
+            android:ems="10"
+            android:hint="sets"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/reps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/sets"
+            android:layout_alignStart="@+id/sets"
+            android:layout_below="@+id/sets"
+            android:layout_marginTop="37dp"
+            android:ems="10"
+            android:hint="reps"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/addWorkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/reps"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:text="Button"
+            tools:text="Add" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

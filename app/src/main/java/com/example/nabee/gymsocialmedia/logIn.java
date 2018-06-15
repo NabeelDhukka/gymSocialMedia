@@ -113,7 +113,7 @@ public class logIn extends AppCompatActivity {
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             // updateUI(user);
-                            Toasts("SUCCESSFUL LOGIN WITH: "+ user);
+                           // Toasts("SUCCESSFUL LOGIN WITH: "+ user);
                             Intent intent = new Intent(logIn.this, profile.class);
                             startActivity(intent);
                         } else {
