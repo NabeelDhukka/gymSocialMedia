@@ -25,7 +25,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.TimeZone;
 
 /**
  * Created by Nabee on 6/8/2018.
@@ -126,11 +129,22 @@ public class logger extends AppCompatActivity implements BottomNavigationView.On
         //write to DB
         FirebaseUser user = mFirebaseAuth.getCurrentUser();
         String userID = user.getUid();
-        mref.child(userID).child("workout").child("Date").setValue(System.currentTimeMillis());
-        //mref.child(userID).child("workout").child(ex);
-        mref.child(userID).child("workout").child(ex).child("Weight").setValue(w);
-        mref.child(userID).child("workout").child(ex).child("Sets").setValue(s);
-        mref.child(userID).child("workout").child(ex).child("Reps").setValue(r);
+//        mref.child(userID).child("workout").child("Date").setValue(System.currentTimeMillis());
+//        mref.child(userID).child("workout").child(ex).child("Weight").setValue(w);
+//        mref.child(userID).child("workout").child(ex).child("Sets").setValue(s);
+//        mref.child(userID).child("workout").child(ex).child("Reps").setValue(r);
+
+        //create formatted date to send up to DB
+        //formats date to MM-dd-yyyy in a String object ex: 06/15/2018
+          Date currDate = new Date(System.currentTimeMillis());
+          SimpleDateFormat sdf;
+          sdf = new SimpleDateFormat("MM-dd-yyyy");
+          String mDate = sdf.format(currDate);
+
+          mref.child("userExer").child(userID).child("Exercises").child(ex).child(mDate).setValue(true);
+          mref.child("calendar").child(userID).child(mDate).child(ex).child("weight").setValue(w);
+          mref.child("calendar").child(userID).child(mDate).child(ex).child("sets").setValue(s);
+          mref.child("calendar").child(userID).child(mDate).child(ex).child("reps").setValue(r);
 
 
         //clear data in fields when saved
