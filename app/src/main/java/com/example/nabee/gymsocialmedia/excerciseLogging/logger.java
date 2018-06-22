@@ -43,7 +43,7 @@ public class logger extends AppCompatActivity implements BottomNavigationView.On
     public EditText weight;
     public EditText sets;
     public EditText reps;
-    public Button addbtn;
+    public Button addbtn, graphbtn;
 
     //firebase stuff
     private DatabaseReference mref;
@@ -99,6 +99,16 @@ public class logger extends AppCompatActivity implements BottomNavigationView.On
 
             }
         });
+
+        //Navigate to detailOverview page so user can see their graphed data
+        graphbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(logger.this, detailOverview.class);
+                //intent.putExtra("ref", mref);
+                startActivity(intent);
+            }
+        });
     }
 
     //save data to firebase
@@ -129,10 +139,6 @@ public class logger extends AppCompatActivity implements BottomNavigationView.On
         //write to DB
         FirebaseUser user = mFirebaseAuth.getCurrentUser();
         String userID = user.getUid();
-//        mref.child(userID).child("workout").child("Date").setValue(System.currentTimeMillis());
-//        mref.child(userID).child("workout").child(ex).child("Weight").setValue(w);
-//        mref.child(userID).child("workout").child(ex).child("Sets").setValue(s);
-//        mref.child(userID).child("workout").child(ex).child("Reps").setValue(r);
 
         //create formatted date to send up to DB
         //formats date to MM-dd-yyyy in a String object ex: 06/15/2018
@@ -180,6 +186,7 @@ public class logger extends AppCompatActivity implements BottomNavigationView.On
         sets =(EditText)findViewById(R.id.sets);
         reps=(EditText)findViewById(R.id.reps);
         addbtn =(Button)findViewById(R.id.addWorkout);
+        graphbtn = (Button)findViewById(R.id.detailView);
 
 
 
