@@ -136,25 +136,27 @@ public class detailOverview extends AppCompatActivity {
 
         //plot found data points for reps and weight
         GraphView graph = (GraphView) findViewById(R.id.graph);
+        series = new LineGraphSeries<>();
         int count = points.size();
         int index;
         DataPoint[] values = new DataPoint[count];
         Log.d(TAG, "extractData: POINTS HOLDS--------------------->"+points);
         index = 0;
         for (exerciseStats dp : points) {
-            DataPoint v = new DataPoint(dp.getReps(), dp.getWeight());
-            Log.d(TAG, "extractData: REPS ARE --------------->"+dp.getReps());
-            if(index < count){
-            values[index] = v;
-                Log.d(TAG, "extractData: VALUES ADDED ARE ------------------->"+index+"\n DATA POINT IT------------------------>"+v);
-                Log.d(TAG, "extractData: VALUES AT THIS INDEX IS ------------------------>"+ values[index]);
-            }
-            index++;
-            Log.d(TAG, "extractData: DATAPOINT ARRAY HAS -------------------------->"+ values);
+            //DataPoint v = new DataPoint(dp.getReps(), dp.getWeight());
+            //Log.d(TAG, "extractData: REPS ARE --------------->"+dp.getReps());
+//            if(index < count){
+//            //values[index] = v;
+//                Log.d(TAG, "extractData: VALUES ADDED ARE ------------------->"+index+"\n DATA POINT IT------------------------>"+v);
+//                Log.d(TAG, "extractData: VALUES AT THIS INDEX IS ------------------------>"+ values[index]);
+//            }
+//            index++;
+//            Log.d(TAG, "extractData: DATAPOINT ARRAY HAS -------------------------->"+ values);
+//
+                series.appendData(new DataPoint(index,dp.getWeight()),true, count);
+                index++;
         }
 
-
-        series = new LineGraphSeries<>(values);
         graph.addSeries(series);
 
 
@@ -165,15 +167,15 @@ public class detailOverview extends AppCompatActivity {
     }
 
     /*-----------------------simple method to plot data points--------------------------------------*/
-//    private DataPoint[] generateData( ArrayList pts) {
+//    public DataPoint[] generateData( ArrayList<exerciseStats> pts) {
 //        int count = pts.size();
 //        int index;
 //        DataPoint[] values = new DataPoint[count];
-//        for (exerciseStats point : pts) {
-//            index = 0;
-//            DataPoint v = new DataPoint(point.getReps(), point.getWeight());
+//        for (index = 0; index < count ; index++) {
+//
+//            DataPoint v = new DataPoint(pts.get(index).getReps(), pts.get(index).getWeight());
 //            values[index] = v;
-//            index++;
+//
 //        }
 //        return values;
 //    }
