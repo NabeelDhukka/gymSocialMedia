@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +33,8 @@ public class detailOverview extends AppCompatActivity {
 
     String TAG = "detail OverView Activity";
     //declare UI elements
-    GraphView graph;
     TextView name;
+    ListView mlist;
 
     //Firebase reference
     private DatabaseReference mDbRef;
@@ -58,6 +61,9 @@ public class detailOverview extends AppCompatActivity {
                 FirebaseUser user = mFirebaseAuth.getCurrentUser();
                 String userID = user.getUid();
                 extractData(dataSnapshot, userID);
+                mlist = (ListView)findViewById(R.id.list);
+                namesList(dataSnapshot, userID);
+
             }
 
             @Override
@@ -67,8 +73,19 @@ public class detailOverview extends AppCompatActivity {
             }
         });
 
+
     }
 
+    public void namesList(DataSnapshot dataSnapshot, String uid){
+        DataSnapshot shot3 = dataSnapshot.child("userExer").child(uid).child("Exercises");
+        ArrayList<String>names = new ArrayList<>();
+        for (DataSnapshot s : shot3.getChildren()){
+            names.add(s.getKey());
+        }
+
+        ArrayAdapter<String>arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,names);
+        mlist.setAdapter(arrayAdapter);
+    }
     /*-----------------------simple method to read user workout stats from db--------------------------------------*/
     public void extractData(DataSnapshot dataSnapshot, String uid){
 
@@ -142,17 +159,8 @@ public class detailOverview extends AppCompatActivity {
         DataPoint[] values = new DataPoint[count];
         Log.d(TAG, "extractData: POINTS HOLDS--------------------->"+points);
         index = 0;
+        //add datapoints to graph view
         for (exerciseStats dp : points) {
-            //DataPoint v = new DataPoint(dp.getReps(), dp.getWeight());
-            //Log.d(TAG, "extractData: REPS ARE --------------->"+dp.getReps());
-//            if(index < count){
-//            //values[index] = v;
-//                Log.d(TAG, "extractData: VALUES ADDED ARE ------------------->"+index+"\n DATA POINT IT------------------------>"+v);
-//                Log.d(TAG, "extractData: VALUES AT THIS INDEX IS ------------------------>"+ values[index]);
-//            }
-//            index++;
-//            Log.d(TAG, "extractData: DATAPOINT ARRAY HAS -------------------------->"+ values);
-//
                 series.appendData(new DataPoint(index,dp.getWeight()),true, count);
                 index++;
         }
@@ -167,18 +175,7 @@ public class detailOverview extends AppCompatActivity {
     }
 
     /*-----------------------simple method to plot data points--------------------------------------*/
-//    public DataPoint[] generateData( ArrayList<exerciseStats> pts) {
-//        int count = pts.size();
-//        int index;
-//        DataPoint[] values = new DataPoint[count];
-//        for (index = 0; index < count ; index++) {
-//
-//            DataPoint v = new DataPoint(pts.get(index).getReps(), pts.get(index).getWeight());
-//            values[index] = v;
-//
-//        }
-//        return values;
-//    }
+
 
     /*-----------------------simple method to show toasts--------------------------------------*/
     private void Toasts(String msg){
@@ -191,6 +188,7 @@ public class detailOverview extends AppCompatActivity {
         //graph = (GraphView) findViewById(R.id.graph);
         name = (TextView)findViewById(R.id.exerciseName);
         //initialize firebase stuff
+
         mDbRef = FirebaseDatabase.getInstance().getReference();
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
