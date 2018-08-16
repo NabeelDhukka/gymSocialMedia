@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -58,11 +60,20 @@ public class detailOverview extends AppCompatActivity {
                 // whenever data at this location is updated.
 //                Object value = dataSnapshot.getValue();
 //                Log.d(TAG, "\nValue is: VALUE IS " + value + "\n");
+                final DataSnapshot fullshot = dataSnapshot;
                 FirebaseUser user = mFirebaseAuth.getCurrentUser();
-                String userID = user.getUid();
-                extractData(dataSnapshot, userID);
+                final String userID = user.getUid();
+                extractData(fullshot, userID,"push ups");
                 mlist = (ListView)findViewById(R.id.list);
                 namesList(dataSnapshot, userID);
+                mlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        extractData(fullshot,userID,mlist.getItemAtPosition(i).toString());
+                        //Log.d(TAG, "onItemClick: ITEM INDEX IS--------------------->"+i);
+                        Toasts(mlist.getItemAtPosition(i).toString());
+                    }
+                });
 
             }
 
@@ -76,8 +87,9 @@ public class detailOverview extends AppCompatActivity {
 
     }
 
-    public void namesList(DataSnapshot dataSnapshot, String uid){
-        DataSnapshot shot3 = dataSnapshot.child("userExer").child(uid).child("Exercises");
+    public void namesList(final DataSnapshot dataSnapshot, String uid){
+        final String userID = uid;
+        final DataSnapshot shot3 = dataSnapshot.child("userExer").child(userID).child("Exercises");
         ArrayList<String>names = new ArrayList<>();
         for (DataSnapshot s : shot3.getChildren()){
             names.add(s.getKey());
@@ -85,12 +97,24 @@ public class detailOverview extends AppCompatActivity {
 
         ArrayAdapter<String>arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,names);
         mlist.setAdapter(arrayAdapter);
+
+
     }
     /*-----------------------simple method to read user workout stats from db--------------------------------------*/
-    public void extractData(DataSnapshot dataSnapshot, String uid){
+    public void extractData(DataSnapshot dataSnapshot, String uid, String itmClkd){
 
+        //if null default to first item in list
+        //if(itmClkd.equals("")){
+           //itmClkd = mlist.getItemAtPosition(0).toString();
+           //Toasts(itmClkd);
+        //}
         //Data point series declaration
+        //plot found data points for reps and weight
+        GraphView graph = (GraphView) findViewById(R.id.graph);
+        Toasts(itmClkd);
         LineGraphSeries<DataPoint> series;
+        //if an old series is already in graph then remove it
+        graph.removeAllSeries();
 
         DataSnapshot shot = dataSnapshot.child("userExer").child(uid).child("Exercises");
         Log.d(TAG, "extractData: NEW SNAPSHOT---------------->"+shot);
@@ -103,8 +127,9 @@ public class detailOverview extends AppCompatActivity {
             Log.d(TAG, "extractData: WHAT IS CHILD DATASNAPSHOT------>"+ child);
 
 
+            Log.d(TAG, "extractData: EXERCISE IS ITMCLK----------------------------->"+itmClkd);
             //if we found the correct exercise and its not emptry then look for date entries
-            if(child != null && child.getKey().equals("bench press")){
+            if(child != null && child.getKey().equals(itmClkd)){
                 Log.d(TAG, "extractData: INSIDE IF STATMENT TO ADD ENTRIES");
                     //now look inside the child data snapshot to extract dates of workouts
                     for (DataSnapshot dates : child.getChildren()){
@@ -138,9 +163,9 @@ public class detailOverview extends AppCompatActivity {
                         exerciseStats stats = new exerciseStats();
 
                         Log.d(TAG, "extractData: REPS IS THIS VALUE------------------------------>"+ x.child("bench press").child("reps"));
-                        double reps = Double.valueOf(x.child("bench press").child("reps").getValue().toString());
+                        double reps = Double.valueOf(x.child(itmClkd).child("reps").getValue().toString());
                         Log.d(TAG, "extractData: REPS IS THIS NOW----------------->"+reps);
-                        double weight = Double.valueOf(x.child("bench press").child("weight").getValue().toString());
+                        double weight = Double.valueOf(x.child(itmClkd).child("weight").getValue().toString());
                         Log.d(TAG, "extractData: WEIGHT AND REPS ARE -------------->"+weight+" AND "+reps);
                         stats.setReps(reps);
                         stats.setWeight(weight);
@@ -151,8 +176,7 @@ public class detailOverview extends AppCompatActivity {
 
         }
 
-        //plot found data points for reps and weight
-        GraphView graph = (GraphView) findViewById(R.id.graph);
+        //GRAPH STUFF
         series = new LineGraphSeries<>();
         int count = points.size();
         int index;
@@ -166,6 +190,9 @@ public class detailOverview extends AppCompatActivity {
         }
 
         graph.addSeries(series);
+
+        //clear points array
+        points.clear();
 
 
         Log.d(TAG, "extractData: ARRAY OF DATES HOLDS--------->"+entries);
