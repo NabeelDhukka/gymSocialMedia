@@ -25,7 +25,6 @@
         <activity
             android:name=".excerciseLogging.exerciseForm"
             android:label="@string/title_activity_exercise_form"
-            android:theme="@style/AppTheme"
             android:exported="true"></activity>
     </application>
 
