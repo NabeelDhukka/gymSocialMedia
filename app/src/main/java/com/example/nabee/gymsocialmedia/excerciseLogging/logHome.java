@@ -42,7 +42,8 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
     //user input fields
     public BottomNavigationView navigationView;
     public FloatingActionButton inputExer = (FloatingActionButton)findViewById(R.id.logExer);
-    public ListView =
+    public ListView currWorkout = (ListView)findViewById(R.id.todaysExerList);
+
     //firebase stuff
     private DatabaseReference mref;
     private FirebaseDatabase mFirebaseDatabase;
