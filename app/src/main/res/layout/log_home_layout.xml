@@ -8,20 +8,21 @@
 
 
     <TextView
-        android:id="@+id/dateToday"
+        android:id="@+id/todayLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/grey_border_bottom"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:text="Today"
         android:textSize="20sp"
-        tools:text="Today"
-        android:gravity="center"
-        android:background="@drawable/grey_border_bottom"/>
+        android:paddingBottom="5dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/dateToday"
+        android:layout_below="@+id/todayLabel"
         android:layout_above="@id/botBarContainer"
         android:id="@+id/listViewBox">
 

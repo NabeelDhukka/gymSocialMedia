@@ -24,6 +24,13 @@ public class profile extends AppCompatActivity implements BottomNavigationView.O
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_layout);
+        setNavigationView();
+
+
+
+    }
+
+    public void setNavigationView(){
 
 
         navigationView = (BottomNavigationView) findViewById(R.id.botNavBar);
@@ -34,9 +41,9 @@ public class profile extends AppCompatActivity implements BottomNavigationView.O
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemid = item.getItemId();
                 if(itemid == R.id.logger){
-                        Intent intent = new Intent(profile.this, logHome.class);
-                        navigationView.getMenu().getItem(1).setChecked(true);
-                        startActivity(intent);
+                    Intent intent = new Intent(profile.this, logHome.class);
+                    navigationView.getMenu().getItem(1).setChecked(true);
+                    startActivity(intent);
 
                 }
                 else if(itemid == R.id.socialFeed){
@@ -49,7 +56,6 @@ public class profile extends AppCompatActivity implements BottomNavigationView.O
                 return true;
             }
         });
-
 
 
     }

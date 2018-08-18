@@ -24,6 +24,11 @@ public class socialFeed extends AppCompatActivity implements BottomNavigationVie
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.social_layout);
+        setNavigationView();
+
+    }
+
+    public void setNavigationView(){
 
         navigationView = (BottomNavigationView) findViewById(R.id.botNavBar);
         navigationView.getMenu().getItem(0).setChecked(true);
@@ -48,8 +53,8 @@ public class socialFeed extends AppCompatActivity implements BottomNavigationVie
                 return true;
             }
         });
-    }
 
+    }
     /**
      * Called when an item in the bottom navigation menu is selected.
      *
