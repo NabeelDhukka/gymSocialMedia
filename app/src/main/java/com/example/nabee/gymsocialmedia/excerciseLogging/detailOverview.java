@@ -213,7 +213,7 @@ public class detailOverview extends AppCompatActivity {
     /*-----------------------simple method to initialize UI components--------------------------*/
     public void init(){
         //graph = (GraphView) findViewById(R.id.graph);
-        name = (TextView)findViewById(R.id.exerciseName);
+        //name = (TextView)findViewById(R.id.exerciseName);
         //initialize firebase stuff
 
         mDbRef = FirebaseDatabase.getInstance().getReference();
