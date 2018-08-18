@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 import com.example.nabee.gymsocialmedia.R;
@@ -41,6 +42,15 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
         setContentView(R.layout.log_home_layout);
         setNavigationView();
         init();
+
+        //onClick launch Exercise input form
+        inputExer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(logHome.this, exerciseForm.class);
+                startActivity(intent1);
+            }
+        });
     }
 
     /*--------------------------------------------initialize UI Elements/Starting Variables----------------------------------------------------*/
