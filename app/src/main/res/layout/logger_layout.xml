@@ -6,78 +6,44 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <TextView
+        android:id="@+id/dateToday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        tools:text="Today"
+        android:gravity="center"
+        android:background="@drawable/grey_border_bottom"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/botBarContainer">
+        android:layout_below="@+id/dateToday"
+        android:layout_above="@id/botBarContainer"
+        android:id="@+id/listViewBox">
 
 
-        <EditText
-            android:id="@+id/exerciseName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="75dp"
-            android:ems="10"
-            android:hint="name of excercise"
-            android:inputType="textPersonName" />
+            android:id="@+id/todaysExerList" />
 
-        <EditText
-            android:id="@+id/weight"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/logExer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/exerciseName"
-            android:layout_alignStart="@+id/exerciseName"
-            android:layout_below="@+id/exerciseName"
-            android:layout_marginTop="45dp"
-            android:ems="10"
-            android:hint="weight"
-            android:inputType="numberDecimal" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_input_add"
+            />
 
-        <EditText
-            android:id="@+id/sets"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/weight"
-            android:layout_alignStart="@+id/weight"
-            android:layout_below="@+id/weight"
-            android:layout_marginTop="34dp"
-            android:ems="10"
-            android:hint="sets"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/reps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/sets"
-            android:layout_alignStart="@+id/sets"
-            android:layout_below="@+id/sets"
-            android:layout_marginTop="37dp"
-            android:ems="10"
-            android:hint="reps"
-            android:inputType="number" />
-
-        <Button
-            android:id="@+id/addWorkout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/reps"
-            android:layout_alignRight="@+id/reps"
-            android:layout_below="@+id/reps"
-            android:layout_marginTop="20dp"
-            android:text="Add" />
-
-        <Button
-            android:id="@+id/detailView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/addWorkout"
-            android:layout_alignBottom="@+id/addWorkout"
-            android:layout_alignLeft="@+id/reps"
-            android:layout_alignStart="@+id/reps"
-            android:text="graphs" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -96,4 +62,6 @@
         </android.support.design.widget.BottomNavigationView>
 
     </RelativeLayout>
+
+
 </RelativeLayout>

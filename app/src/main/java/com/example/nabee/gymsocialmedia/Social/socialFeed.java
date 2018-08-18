@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.nabee.gymsocialmedia.R;
-import com.example.nabee.gymsocialmedia.excerciseLogging.logger;
+import com.example.nabee.gymsocialmedia.excerciseLogging.logHome;
 import com.example.nabee.gymsocialmedia.profilePage.profile;
 
 /**
@@ -33,7 +33,7 @@ public class socialFeed extends AppCompatActivity implements BottomNavigationVie
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemid = item.getItemId();
                 if(itemid == R.id.logger){
-                    Intent intent = new Intent(socialFeed.this, logger.class);
+                    Intent intent = new Intent(socialFeed.this, logHome.class);
                     navigationView.getMenu().getItem(1).setChecked(true);
                     startActivity(intent);
 
