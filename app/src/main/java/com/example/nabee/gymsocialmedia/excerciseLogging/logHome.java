@@ -75,11 +75,13 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
                     Intent intent = new Intent(logHome.this, profile.class);
                     navigationView.getMenu().getItem(2).setChecked(true);
                     startActivity(intent);
+                    overridePendingTransition(0,0);
 
                 } else if (itemid == R.id.socialFeed) {
                     Intent intent = new Intent(logHome.this, socialFeed.class);
                     navigationView.getMenu().getItem(1).setChecked(true);
                     startActivity(intent);
+                    overridePendingTransition(0,0);
 
                 }
 

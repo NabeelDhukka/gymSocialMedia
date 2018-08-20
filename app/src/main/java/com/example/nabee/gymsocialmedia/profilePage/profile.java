@@ -44,12 +44,14 @@ public class profile extends AppCompatActivity implements BottomNavigationView.O
                     Intent intent = new Intent(profile.this, logHome.class);
                     navigationView.getMenu().getItem(1).setChecked(true);
                     startActivity(intent);
+                    overridePendingTransition(0,0);
 
                 }
                 else if(itemid == R.id.socialFeed){
                     Intent intent = new Intent(profile.this, socialFeed.class);
                     navigationView.getMenu().getItem(0).setChecked(true);
                     startActivity(intent);
+                    overridePendingTransition(0,0);
 
                 }
 

@@ -41,12 +41,14 @@ public class socialFeed extends AppCompatActivity implements BottomNavigationVie
                     Intent intent = new Intent(socialFeed.this, logHome.class);
                     navigationView.getMenu().getItem(1).setChecked(true);
                     startActivity(intent);
+                    overridePendingTransition(0,0);
 
                 }
                 else if(itemid == R.id.profile){
                     Intent intent = new Intent(socialFeed.this, profile.class);
                     navigationView.getMenu().getItem(2).setChecked(true);
                     startActivity(intent);
+                    overridePendingTransition(0,0);
 
                 }
 
