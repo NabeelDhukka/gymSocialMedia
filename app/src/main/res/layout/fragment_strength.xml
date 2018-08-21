@@ -4,27 +4,102 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nabee.gymsocialmedia.excerciseLogging.exerciseForm$PlaceholderFragment">
+    tools:context="com.example.nabee.gymsocialmedia.excerciseLogging.exerciseForm$PlaceholderFragment"
+    tools:layout_editor_absoluteY="25dp">
 
-    <TextView
-        android:id="@+id/section_label"
+    <Button
+        android:id="@+id/chestbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="19dp"
+        android:text="chest"
+        app:layout_constraintBaseline_toBaselineOf="@+id/backbtn"
+        app:layout_constraintEnd_toStartOf="@+id/backbtn"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/backbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Strength stuff!!!"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="274dp" />
+        android:text="back"
+        app:layout_constraintBaseline_toBaselineOf="@+id/legsbtn"
+        app:layout_constraintEnd_toStartOf="@+id/legsbtn"
+        app:layout_constraintStart_toEndOf="@+id/chestbtn" />
 
+    <Button
+        android:id="@+id/legsbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="9dp"
+        android:layout_marginTop="16dp"
+        android:text="legs"
+        app:layout_constraintEnd_toStartOf="@+id/armsbtn"
+        app:layout_constraintStart_toEndOf="@+id/backbtn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/armsbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="arms"
+        app:layout_constraintBaseline_toBaselineOf="@+id/legsbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/legsbtn" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="99dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addStrength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/strengthReps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="reps"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <EditText
+        android:id="@+id/strengthSets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:ems="10"
+        android:hint="sets"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/strengthReps"
+        app:layout_constraintTop_toBottomOf="@+id/strengthReps" />
+
+    <EditText
+        android:id="@+id/strengthWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="weight"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/strengthSets"
+        app:layout_constraintTop_toBottomOf="@+id/strengthSets" />
 </android.support.constraint.ConstraintLayout>

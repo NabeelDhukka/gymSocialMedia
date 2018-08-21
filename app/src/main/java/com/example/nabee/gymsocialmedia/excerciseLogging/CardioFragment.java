@@ -17,23 +17,37 @@ import java.util.List;
 public class CardioFragment extends Fragment {
     private static final String TAG = "CardioFragment";
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cardio,container,false);
+        final View view = inflater.inflate(R.layout.fragment_cardio,container,false);
+        List<String> spinnerArray = new ArrayList<String>();
+        spinnerArray.add("push ups");
+        spinnerArray.add("bench press");
+        spinnerArray.add("flys");
+        spinnerArray.add("dumbell press");
+        spinnerArray.add("new exercise");
+
+
+        //create array adapter to make our list of exercises usable for the drop down menu
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(),android.R.layout.simple_spinner_item,spinnerArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner sItems = (Spinner)view.findViewById(R.id.cardioList);
+        sItems.setAdapter(adapter);
 
         return view;
     }
 
-//    public void fillSpinner(){
-//        //list to fill spinner
-//        ArrayList<String> exers = new ArrayList<>();
-//        exers.add("new exer");
-//        ArrayAdapter<String> exerListAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item ,exers);
-//        exerListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        //Spinner elst = null;
-//        Spinner elst = (Spinner)findViewById(R.id.cardioList);
-//        elst.setAdapter(exerListAdapter);
-//        findVire
-//    }
+
+
+    public void fillSpinner(List list){
+
+
+    }
+
+    public void createExerList(){
+
+
+    }
 }
