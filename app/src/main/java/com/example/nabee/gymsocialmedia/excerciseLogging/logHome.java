@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.nabee.gymsocialmedia.R;
 import com.example.nabee.gymsocialmedia.Social.socialFeed;
@@ -103,4 +104,11 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return true;
     }
+
+    //simple method to display custom toasts
+    private void Toasts(String msg){
+
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
+
 }
