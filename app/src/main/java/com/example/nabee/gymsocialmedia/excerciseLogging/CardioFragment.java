@@ -1,5 +1,6 @@
 package com.example.nabee.gymsocialmedia.excerciseLogging;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import android.view.ViewGroup.LayoutParams;
 
 
 import com.example.nabee.gymsocialmedia.R;
+import com.example.nabee.gymsocialmedia.profilePage.profile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -47,6 +49,12 @@ public class CardioFragment extends Fragment {
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private DataSnapshot initShot;
+
+    //popUp fields
+    EditText nameField;
+    EditText distField;
+    EditText timeField;
 
     @Nullable
     @Override
@@ -56,39 +64,45 @@ public class CardioFragment extends Fragment {
         //send data to firebase DB
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mref = mFirebaseDatabase.getReference();
+        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+        final String userID = user.getUid();
+        mref = mFirebaseDatabase.getInstance().getReference().child(userID);
 
 
 
         //write to DB
-        FirebaseUser user = mFirebaseAuth.getCurrentUser();
-        final String userID = user.getUid();
 
+//        final List<String> list = createExerList(null);
+//        final Spinner exerDropDown = fillSpinner(list, view);
+//        final DataSnapshot cardioExersdb = dataSnapshot.child("ExerChars").child(userID).child("Exers").child("Cardio");
+         List<String> listOnChange = createExerList(null);
+         Spinner exerDropDownOnChange = fillSpinner(listOnChange, view);
+         //addNewExercise("push ups");
 
         //Read from the database
         mref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onDataChange: INSIDE ON DATA CHANGE");
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 final DataSnapshot cardioExersdb = dataSnapshot.child("ExerChars").child(userID).child("Exers").child("Cardio");
-                final List<String> list = createExerList(cardioExersdb);
-                final Spinner exerDropDown = fillSpinner(list, view);
+                final List<String> listOnChange = createExerList(cardioExersdb);
+                final Spinner exerDropDownOnChange = fillSpinner(listOnChange, view);
 
-                exerDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                exerDropDownOnChange.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                        final AdapterView<?> tmp = adapterView;
                         if(i==0){
-                            ((TextView) adapterView.getChildAt(0)).setTextColor(Color.GRAY);
+                           // ((TextView) adapterView.getChildAt(0)).setTextColor(Color.GRAY);
                         }
 
-                        if (exerDropDown.getItemAtPosition(i).equals("Add New Exercise")){
+                        if (exerDropDownOnChange.getItemAtPosition(i).equals("Add New Exercise")){
 
                             LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                             // Inflate the custom layout/view
-                            View customView = inflater.inflate(R.layout.cardio_popup_window_layout,null);
+                            final View customView = inflater.inflate(R.layout.cardio_popup_window_layout,null);
 
                             mPopupWindow = new PopupWindow(
                                     customView,
@@ -97,24 +111,29 @@ public class CardioFragment extends Fragment {
                                     true
                             );
 
-                            final EditText exerNameField = (EditText)customView.findViewById(R.id.newExerName);
+                            //final EditText exerNameField = (EditText)customView.findViewById(R.id.newExerName);
 
                             newaddbtn = (Button)customView.findViewById(R.id.newExerAddbtn);
                             newaddbtn.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    final String name = exerNameField.getText().toString();
-                                    addNewExercise(name);
-                                    //exerDropDown.setSelection(selectNewExerOnSpinner(cardioExersdb,name));
-                                    //((TextView) tmp.getChildAt(selectNewExerOnSpinner(cardioExersdb,name))).setText(name);
-                                    //DataSnapshot blah = dataSnapshot.child("ExerChars").child(userID).child("Exers").child("Cardio");
-                                    //Toasts(selectNewExerOnSpinner(cardioExersdb,name).toString());
+                                    //final String name = exerNameField.getText().toString();
+                                    //addNewExercise(name);
+                                    nameField = (EditText)customView.findViewById(R.id.newExerName);
+                                    distField = (EditText)customView.findViewById(R.id.distance);
+                                    timeField = (EditText)customView.findViewById(R.id.time);
+
+                                    String name = nameField.getText().toString();
+                                    String dist = distField.getText().toString();
+                                    String time = timeField.getText().toString();
+                                    addNewExercise(name, dist, time);
+                                    Intent intent = new Intent(getActivity(), logHome.class);
                                     mPopupWindow.dismiss();
+                                    startActivity(intent);
                                 }
                             });
 
                             mPopupWindow.showAtLocation(view, Gravity.CENTER,0,0);
-                            //((TextView) adapterView.getChildAt();
                             Toasts("I COMPLETED THE POPUP ");
 
 
@@ -191,24 +210,26 @@ public Integer selectNewExerOnSpinner(DataSnapshot snapshot, String target){
 
     }
 
-    public void addNewExercise(String newExerName){
+    public void addNewExercise(String newExerName, String dist, String time){
 
 
         FirebaseUser user = mFirebaseAuth.getCurrentUser();
         String userID = user.getUid();
         //create formatted date to send up to DB
         //formats date to MM-dd-yyyy in a String object ex: 06/15/2018
-//        Date currDate = new Date(System.currentTimeMillis());
-//        SimpleDateFormat sdf;
-//        sdf = new SimpleDateFormat("MM-dd-yyyy");
-//        String mDate = sdf.format(currDate);
 
-//        mref.child("userExer").child(userID).child("Exercises").child(ex).child(mDate).setValue(true);
-//        mref.child("calendar").child(userID).child(mDate).child(ex).child("weight").setValue(w);
-//        mref.child("calendar").child(userID).child(mDate).child(ex).child("sets").setValue(s);
-//        mref.child("calendar").child(userID).child(mDate).child(ex).child("reps").setValue(r);
+        //create formatted date to send up to DB
+        //formats date to MM-dd-yyyy in a String object ex: 06/15/2018
+        Date currDate = new Date(System.currentTimeMillis());
+        SimpleDateFormat sdf;
+        sdf = new SimpleDateFormat("MM-dd-yyyy");
+        String mDate = sdf.format(currDate);
 
+        mref.child("userExer").child(userID).child("Exercises").child(newExerName).child(mDate).setValue(true);
+        mref.child("calendar").child(userID).child(mDate).child(newExerName).child("dist").setValue(dist);
+        mref.child("calendar").child(userID).child(mDate).child(newExerName).child("time").setValue(time);
         mref.child("ExerChars").child(userID).child("Exers").child("Cardio").child(newExerName).setValue(true);
+        Toasts("Saved Exercise!");
 
 
     }
@@ -219,14 +240,14 @@ public Integer selectNewExerOnSpinner(DataSnapshot snapshot, String target){
 
         spinnerArray.add("Please Select Exercise...");
         //add exers in the middle so "add new exercise" button stays at last position
-        for(DataSnapshot entries : existingExers.getChildren()){
-            spinnerArray.add(entries.getKey());
+        if(existingExers != null) {
+            for (DataSnapshot entries : existingExers.getChildren()) {
+                spinnerArray.add(entries.getKey());
 
+            }
         }
 
         spinnerArray.add("Add New Exercise");
-        //start logic here
-
         return spinnerArray;
     }
 
@@ -235,4 +256,6 @@ public Integer selectNewExerOnSpinner(DataSnapshot snapshot, String target){
 
         Toast.makeText(getView().getContext(), msg, Toast.LENGTH_LONG).show();
     }
+
+
 }

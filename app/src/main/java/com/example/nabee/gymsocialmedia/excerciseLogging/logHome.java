@@ -109,6 +109,7 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
     private void Toasts(String msg){
 
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+
     }
 
 }
