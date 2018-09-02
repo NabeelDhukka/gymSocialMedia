@@ -67,18 +67,7 @@ public class CardioFragment extends Fragment {
         FirebaseUser user = mFirebaseAuth.getCurrentUser();
         final String userID = user.getUid();
         mref = mFirebaseDatabase.getInstance().getReference().child(userID);
-
-
-
-        //write to DB
-
-//        final List<String> list = createExerList(null);
-//        final Spinner exerDropDown = fillSpinner(list, view);
-//        final DataSnapshot cardioExersdb = dataSnapshot.child("ExerChars").child(userID).child("Exers").child("Cardio");
-         List<String> listOnChange = createExerList(null);
-         Spinner exerDropDownOnChange = fillSpinner(listOnChange, view);
-         //addNewExercise("push ups");
-
+        
         //Read from the database
         mref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -215,11 +204,7 @@ public Integer selectNewExerOnSpinner(DataSnapshot snapshot, String target){
 
         FirebaseUser user = mFirebaseAuth.getCurrentUser();
         String userID = user.getUid();
-        //create formatted date to send up to DB
-        //formats date to MM-dd-yyyy in a String object ex: 06/15/2018
 
-        //create formatted date to send up to DB
-        //formats date to MM-dd-yyyy in a String object ex: 06/15/2018
         Date currDate = new Date(System.currentTimeMillis());
         SimpleDateFormat sdf;
         sdf = new SimpleDateFormat("MM-dd-yyyy");
