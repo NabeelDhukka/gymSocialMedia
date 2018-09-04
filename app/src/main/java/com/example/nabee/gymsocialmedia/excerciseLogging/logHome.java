@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,8 +17,11 @@ import com.example.nabee.gymsocialmedia.R;
 import com.example.nabee.gymsocialmedia.Social.socialFeed;
 import com.example.nabee.gymsocialmedia.profilePage.profile;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 /**
  * Created by Nabee on 6/8/2018.
@@ -29,7 +33,7 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
     //user input fields
     public BottomNavigationView navigationView;
     public FloatingActionButton inputExer;
-    public ListView currWorkout;
+    public ListView currWorkouts;
 
     //firebase stuff
     private DatabaseReference mref;
@@ -54,11 +58,25 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
         });
     }
 
+    /*--------------------------------------------fill todays exercise to list view----------------------------------------------------*/
+    public void fillListView(final DataSnapshot dataSnapshot, String uid){
+
+        final String userID = uid;
+        final DataSnapshot shot3 = dataSnapshot.child("userExer").child(userID).child("Exercises");
+        ArrayList<String> names = new ArrayList<>();
+        for (DataSnapshot s : shot3.getChildren()){
+            names.add(s.getKey());
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,names);
+        currWorkouts.setAdapter(arrayAdapter);
+
+    }
     /*--------------------------------------------initialize UI Elements/Starting Variables----------------------------------------------------*/
     public void init(){
 
         inputExer = (FloatingActionButton)findViewById(R.id.logExer);
-        currWorkout = (ListView)findViewById(R.id.todaysExerList);
+        currWorkouts = (ListView)findViewById(R.id.todaysExerList);
 
     }
     /*--------------------------------------------Set up Navigation bottom view----------------------------------------------------*/

@@ -64,6 +64,7 @@ public class StrengthFragment extends Fragment {
     public Button newaddbtn;
 
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -119,8 +120,6 @@ public class StrengthFragment extends Fragment {
                                     repsField = (EditText)customView.findViewById(R.id.repsEdittext);
                                     setsField = (EditText)customView.findViewById(R.id.setsEdittext);
 
-
-
                                     String name = nameField.getText().toString();
                                     String weight = weightField.getText().toString();
                                     String reps = repsField.getText().toString();
@@ -133,20 +132,38 @@ public class StrengthFragment extends Fragment {
                                     startActivity(intent);
                                 }
                             });
-
                             mPopupWindow.showAtLocation(view, Gravity.CENTER,0,0);
-
                             Toasts("I COMPLETED THE POPUP ");
-
-
-
                         }
-
+//                        else if(i != 0){
+//                           // final String name = exerDropDownOnChange.getItemAtPosition(i).toString();
+//                        }
                     }
 
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
 
+                    }
+                });
+
+                weightField = (EditText)view.findViewById(R.id.strengthWeight);
+                repsField = (EditText)view.findViewById(R.id.strengthReps);
+                setsField = (EditText)view.findViewById(R.id.strengthSets);
+                Button addbtn = (Button)view.findViewById(R.id.addStrength);
+
+                addbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        String name = exerDropDownOnChange.getSelectedItem().toString();
+                        String weight = weightField.getText().toString();
+                        String reps = repsField.getText().toString();
+                        String sets = setsField.getText().toString();
+                        ToggleButton checkedButton = findCheckedButton();
+                        String mgrp = checkedButton.getText().toString();
+                        addNewExercise(name, weight, reps, sets, mgrp);
+                        Intent intent = new Intent(getActivity(), logHome.class);
+                        startActivity(intent);
                     }
                 });
 
@@ -351,6 +368,22 @@ public class StrengthFragment extends Fragment {
         legsBtn.setChecked(false);
     }
 
+    public ToggleButton findCheckedButton(){
+        List<ToggleButton>mgbuttons = new ArrayList<ToggleButton>();
+        mgbuttons.add(chestBtn);
+        mgbuttons.add(backBtn);
+        mgbuttons.add(armsBtn);
+        mgbuttons.add(legsBtn);
+
+        for (ToggleButton curr : mgbuttons){
+            if(curr.isChecked()){
+                return curr;
+            }
+        }
+        return null;
+
+
+    }
     //simple method to display custom toasts
     private void Toasts(String msg){
 

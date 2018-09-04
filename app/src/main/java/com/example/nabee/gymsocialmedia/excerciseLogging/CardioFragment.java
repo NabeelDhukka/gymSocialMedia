@@ -42,7 +42,7 @@ public class CardioFragment extends Fragment {
     private static final String TAG = "CardioFragment";
 
     public PopupWindow mPopupWindow;
-    public Button newaddbtn;
+    public Button newaddbtn, addbtn;
 
     //firebase stuff
     private DatabaseReference mref;
@@ -93,12 +93,12 @@ public class CardioFragment extends Fragment {
                             // Inflate the custom layout/view
                             final View customView = inflater.inflate(R.layout.cardio_popup_window_layout,null);
 
-                            mPopupWindow = new PopupWindow(
-                                    customView,
-                                    LayoutParams.WRAP_CONTENT,
-                                    LayoutParams.WRAP_CONTENT,
-                                    true
-                            );
+                                        mPopupWindow = new PopupWindow(
+                                                customView,
+                                                LayoutParams.WRAP_CONTENT,
+                                                LayoutParams.WRAP_CONTENT,
+                                                true
+                                        );
 
                             //final EditText exerNameField = (EditText)customView.findViewById(R.id.newExerName);
 
@@ -115,7 +115,7 @@ public class CardioFragment extends Fragment {
                                     String name = nameField.getText().toString();
                                     String dist = distField.getText().toString();
                                     String time = timeField.getText().toString();
-                                    addNewExercise(name, dist, time);
+                                    addExercise(name, dist, time);
                                     Intent intent = new Intent(getActivity(), logHome.class);
                                     mPopupWindow.dismiss();
                                     startActivity(intent);
@@ -129,6 +129,7 @@ public class CardioFragment extends Fragment {
 
                         }
 
+
                     }
 
                     @Override
@@ -136,6 +137,22 @@ public class CardioFragment extends Fragment {
 
                     }
                 });
+
+                addbtn = (Button)view.findViewById(R.id.addCardio);
+                distField = (EditText)view.findViewById(R.id.cardioDist);
+                timeField = (EditText)view.findViewById(R.id.cardioTime);
+                addbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String name = exerDropDownOnChange.getSelectedItem().toString();
+                        String dist = distField.getText().toString();
+                        String time = timeField.getText().toString();
+                        addExercise(name, dist, time);
+                        Intent intent = new Intent(getActivity(), logHome.class);
+                        startActivity(intent);
+                    }
+                });
+
 
             }
 
@@ -199,7 +216,7 @@ public Integer selectNewExerOnSpinner(DataSnapshot snapshot, String target){
 
     }
 
-    public void addNewExercise(String newExerName, String dist, String time){
+    public void addExercise(String newExerName, String dist, String time){
 
 
         FirebaseUser user = mFirebaseAuth.getCurrentUser();
