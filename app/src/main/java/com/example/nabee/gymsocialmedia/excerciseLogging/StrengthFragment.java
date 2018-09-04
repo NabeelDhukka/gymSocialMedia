@@ -299,6 +299,15 @@ public class StrengthFragment extends Fragment {
 
     }
 
+    /*-------------------------------------filter list based on Toggle Button picked-------------------------------*/
+    public void filterList(String muscleGroup){
+        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+        String userID = user.getUid();
+        //DataSnapshot itemsByMuscleGroup = child("ExerChars").child(userID).child("Strength");
+
+
+
+    }
     /*-------------------------------------init start up variables-------------------------------*/
     public void init(){
         //send data to firebase DB
@@ -323,6 +332,9 @@ public class StrengthFragment extends Fragment {
             public void onClick(View view) {
                 //Toast.makeText(getActivity(), "TESTING BUTTON CLICK 1",Toast.LENGTH_SHORT).show();
                 btnToggle(chestBtn);
+                //if(chestBtn.isChecked()){
+                    //filterList();
+                //}
             }
         });
 
