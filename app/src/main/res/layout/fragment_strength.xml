@@ -4,15 +4,21 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient2"
     tools:context="com.example.nabee.gymsocialmedia.excerciseLogging.exerciseForm$PlaceholderFragment"
     tools:layout_editor_absoluteY="25dp">
 
     <Spinner
         android:id="@+id/strengthSpinner"
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
+        android:layout_width="343dp"
+        android:layout_height="42dp"
         android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_entry_box"
+        android:textColor="#dedede"
+        android:textColorHint="#b5b5b5"
+        app:layout_constraintBottom_toTopOf="@+id/strengthReps"
         app:layout_constraintEnd_toEndOf="@+id/backBtn"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/backBtn"
         app:layout_constraintTop_toBottomOf="@+id/chestBtn" />
 
@@ -27,15 +33,19 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/backBtn"
         app:layout_constraintEnd_toStartOf="@+id/backBtn"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/toggle_selector"
+        android:textColor="#eaeaea"/>
 
     <ToggleButton
         android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:background="@drawable/toggle_selector"
         android:checked="false"
         android:text="ToggleButton"
+        android:textColor="#eaeaea"
         android:textOff="back"
         android:textOn="back"
         app:layout_constraintEnd_toStartOf="@+id/armsBtn"
@@ -52,7 +62,9 @@
         android:textOn="arms"
         app:layout_constraintEnd_toStartOf="@+id/legsBtn"
         app:layout_constraintStart_toEndOf="@+id/backBtn"
-        app:layout_constraintTop_toTopOf="@+id/backBtn" />
+        app:layout_constraintTop_toTopOf="@+id/backBtn"
+        android:background="@drawable/toggle_selector"
+        android:textColor="#eaeaea"/>
 
     <ToggleButton
         android:id="@+id/legsBtn"
@@ -64,49 +76,75 @@
         android:textOn="legs"
         app:layout_constraintBaseline_toBaselineOf="@+id/armsBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/armsBtn" />
+        app:layout_constraintStart_toEndOf="@+id/armsBtn"
+        android:background="@drawable/toggle_selector"
+        android:textColor="#eaeaea"/>
 
     <Button
         android:id="@+id/addStrength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
+        android:background="@drawable/rounded_button"
         android:text="add"
+        android:textColor="#eaeaea"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/strengthReps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="283dp"
+        android:layout_height="46dp"
         android:layout_marginTop="31dp"
+        android:background="@drawable/rounded_entry_box"
         android:ems="10"
-        android:hint="reps"
+        android:hint="Reps"
         android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#dedede"
+        android:textColorHint="#b5b5b5"
+        android:textColorLink="#354F52"
+        android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/strengthSpinner" />
 
     <EditText
         android:id="@+id/strengthSets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="283dp"
+        android:layout_height="48dp"
         android:layout_marginTop="33dp"
+        android:background="@drawable/rounded_entry_box"
         android:ems="10"
-        android:hint="sets"
+        android:hint="Sets"
         android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#dedede"
+        android:textColorHint="#b5b5b5"
+        android:textColorLink="#354F52"
+        android:textCursorDrawable="@null"
         app:layout_constraintStart_toStartOf="@+id/strengthReps"
         app:layout_constraintTop_toBottomOf="@+id/strengthReps" />
 
     <EditText
         android:id="@+id/strengthWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="283dp"
+        android:layout_height="49dp"
         android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_entry_box"
         android:ems="10"
-        android:hint="weight"
+        android:hint="Weight"
         android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#dedede"
+        android:textColorHint="#b5b5b5"
+        android:textColorLink="#354F52"
+        android:textCursorDrawable="@null"
         app:layout_constraintStart_toStartOf="@+id/strengthSets"
         app:layout_constraintTop_toBottomOf="@+id/strengthSets" />
 
