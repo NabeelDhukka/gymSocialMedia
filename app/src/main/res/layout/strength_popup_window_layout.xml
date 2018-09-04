@@ -6,7 +6,7 @@
 
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
-    android:background="@drawable/rounded_login_box"
+    android:background="@drawable/rounded_popup_box"
     android:padding="10dp">
 
 
@@ -17,7 +17,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="25dp"
+        android:spinnerMode="dialog"
+
+        />
 
     <EditText
         android:id="@+id/newExerName"
@@ -34,9 +37,45 @@
         android:id="@+id/newExerAddbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newExerName"
+        android:layout_below="@+id/repsEdittext"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="11dp"
         android:text="Add" />
+
+    <EditText
+        android:id="@+id/weightEdittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/newExerName"
+        android:layout_alignRight="@+id/newExerName"
+        android:layout_below="@+id/newExerName"
+        android:layout_marginTop="21dp"
+        android:ems="10"
+        android:hint="weight"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/setsEdittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/weightEdittext"
+        android:layout_alignStart="@+id/weightEdittext"
+        android:layout_below="@+id/weightEdittext"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Sets"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/repsEdittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/setsEdittext"
+        android:layout_alignStart="@+id/setsEdittext"
+        android:layout_below="@+id/setsEdittext"
+        android:layout_marginTop="29dp"
+        android:ems="10"
+        android:hint="Reps"
+        android:inputType="phone" />
 
 </RelativeLayout>

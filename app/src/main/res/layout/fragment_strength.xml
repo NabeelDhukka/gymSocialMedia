@@ -8,7 +8,7 @@
     tools:layout_editor_absoluteY="25dp">
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/strengthSpinner"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -86,7 +86,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/strengthSpinner" />
 
     <EditText
         android:id="@+id/strengthSets"
