@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.nabee.gymsocialmedia.excerciseLogging.exerciseForm$PlaceholderFragment"
-    tools:layout_editor_absoluteY="25dp">
+    tools:layout_editor_absoluteY="25dp"
+    android:background="@drawable/gradient2">
 
     <Spinner
         android:id="@+id/cardioList"
