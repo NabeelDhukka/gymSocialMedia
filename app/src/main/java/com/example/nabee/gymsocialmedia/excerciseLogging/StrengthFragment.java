@@ -168,7 +168,10 @@ public class StrengthFragment extends Fragment {
                         String reps = repsField.getText().toString();
                         String sets = setsField.getText().toString();
                         ToggleButton checkedButton = findCheckedButton();
-                        String mgrp = checkedButton.getText().toString();
+                        String mgrp = null;
+                        if(checkedButton!=null){
+                             mgrp = checkedButton.getText().toString();
+                        }
                         addNewExercise(name, weight, reps, sets, mgrp);
                         Intent intent = new Intent(getActivity(), logHome.class);
                         startActivity(intent);

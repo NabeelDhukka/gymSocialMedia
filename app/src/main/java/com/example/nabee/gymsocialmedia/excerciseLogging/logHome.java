@@ -7,9 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,7 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Nabee on 6/8/2018.
@@ -38,7 +37,7 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
     public final String TAG = "Logger activity";
 
     //TEST
-    private MovieAdapter mAdapter;
+    private overviewAdapter mAdapter;
 
     //user input fields
     public BottomNavigationView navigationView;
@@ -101,9 +100,10 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
 
         for (DataSnapshot date : shot3.getChildren()){
             if(date.getKey().equals(mDate)) {
-                getOverviewStats newStats = new getOverviewStats();
+
                 for (DataSnapshot todayExer : date.getChildren()) {
                     //names.add(todayExer.getKey());
+                    getOverviewStats newStats = new getOverviewStats();
                     String liName = todayExer.getKey();
                     newStats.setName(liName);
                     for(DataSnapshot stat : todayExer.getChildren()){
@@ -117,18 +117,20 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
                             newStats.setWeight(stat.getValue().toString());
                         }
                     }
+                    Log.d(TAG, "fillListView: ARRAY LIST STARTING HERE!!!!!!!!!!!!!!!!!!!!!");
+                    Log.d(TAG, "fillListView: ARRAY LIST name ----------------------------->"+newStats.getName());
+                    Log.d(TAG, "fillListView: ARRAY LIST reps ----------------------------->"+newStats.getReps());
+                    Log.d(TAG, "fillListView: ARRAY LIST sets ----------------------------->"+newStats.getSets());
+                    Log.d(TAG, "fillListView: ARRAY LIST weight ----------------------------->"+newStats.getWeight());
+                    customEntry.add(newStats);
+
                 }
 
-                customEntry.add(newStats);
+
             }
         }
 
-//        ArrayList<Movie> moviesList = new ArrayList<>();
-//        moviesList.add(new Movie(R.drawable.ic_log, "After Earth" , "2013"));
-//        moviesList.add(new Movie(R.drawable.ic_profile, "Baby Driver" , "2017"));
-//        moviesList.add(new Movie(R.drawable.ic_feed, "Deadpool" , "2016"));
-
-        mAdapter = new MovieAdapter(this,customEntry);
+        mAdapter = new overviewAdapter(this,customEntry);
         currWorkouts.setAdapter(mAdapter);
 
 
