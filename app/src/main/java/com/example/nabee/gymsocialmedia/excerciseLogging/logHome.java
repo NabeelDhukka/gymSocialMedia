@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Nabee on 6/8/2018.
@@ -35,6 +36,10 @@ import java.util.Date;
 public class logHome extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     public final String TAG = "Logger activity";
+
+    //TEST
+    private MovieAdapter mAdapter;
+
     //user input fields
     public BottomNavigationView navigationView;
     public FloatingActionButton inputExer;
@@ -92,18 +97,43 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
         SimpleDateFormat sdf;
         sdf = new SimpleDateFormat("MM-dd-yyyy");
         String mDate = sdf.format(currDate);
-        ArrayList<String> names = new ArrayList<>();
+        ArrayList<getOverviewStats> customEntry = new ArrayList<>();
 
         for (DataSnapshot date : shot3.getChildren()){
             if(date.getKey().equals(mDate)) {
+                getOverviewStats newStats = new getOverviewStats();
                 for (DataSnapshot todayExer : date.getChildren()) {
-                    names.add(todayExer.getKey());
+                    //names.add(todayExer.getKey());
+                    String liName = todayExer.getKey();
+                    newStats.setName(liName);
+                    for(DataSnapshot stat : todayExer.getChildren()){
+                        if (stat.getKey().equals("Reps")){
+                            newStats.setReps(stat.getValue().toString());
+                        }
+                        else if (stat.getKey().equals("Sets")){
+                            newStats.setSets(stat.getValue().toString());
+                        }
+                        else if (stat.getKey().equals("Weight")){
+                            newStats.setWeight(stat.getValue().toString());
+                        }
+                    }
                 }
+
+                customEntry.add(newStats);
             }
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,names);
-        currWorkouts.setAdapter(arrayAdapter);
+//        ArrayList<Movie> moviesList = new ArrayList<>();
+//        moviesList.add(new Movie(R.drawable.ic_log, "After Earth" , "2013"));
+//        moviesList.add(new Movie(R.drawable.ic_profile, "Baby Driver" , "2017"));
+//        moviesList.add(new Movie(R.drawable.ic_feed, "Deadpool" , "2016"));
+
+        mAdapter = new MovieAdapter(this,customEntry);
+        currWorkouts.setAdapter(mAdapter);
+
+
+       // ArrayAdapter<getOverviewStats> arrayAdapter = new ArrayAdapter<getOverviewStats>(this,android.R.layout.custom_list_item,customEntry);
+        //currWorkouts.setAdapter(arrayAdapter);
 
     }
     /*--------------------------------------------initialize UI Elements/Starting Variables----------------------------------------------------*/

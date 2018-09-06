@@ -3,6 +3,7 @@ package com.example.nabee.gymsocialmedia.excerciseLogging;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -62,7 +63,9 @@ public class StrengthFragment extends Fragment {
     EditText weightField;
     public PopupWindow mPopupWindow;
     public Button newaddbtn;
-
+    public Spinner exerDropDownOnChange;
+    public DataSnapshot strengthExersdb;
+    public List<String> listOnChange;
 
 
     @Nullable
@@ -77,14 +80,19 @@ public class StrengthFragment extends Fragment {
         final String userID = user.getUid();
         mref = mFirebaseDatabase.getInstance().getReference().child(userID);
 
-        buttonSetUp(view);
+
 
         mref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final DataSnapshot strengthExersdb = dataSnapshot.child("ExerChars").child(userID).child("Exers").child("Strength");
-                final List<String> listOnChange = createExerList(strengthExersdb);
-                final Spinner exerDropDownOnChange = fillSpinner(listOnChange, view);
+
+                strengthExersdb = dataSnapshot.child("ExerChars").child(userID).child("Exers").child("Strength");
+
+                listOnChange = createExerList(strengthExersdb);
+
+                exerDropDownOnChange = fillSpinner(listOnChange, view);
+
+                buttonSetUp(view,strengthExersdb);
 
                 exerDropDownOnChange.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -184,10 +192,10 @@ public class StrengthFragment extends Fragment {
     public Spinner setMuscleGroupSpinner(View view){
         List<String> mgSpinner = new ArrayList<String>();
         mgSpinner.add("Select Muscle Group");
-        mgSpinner.add("Chest");
-        mgSpinner.add("Back");
-        mgSpinner.add("Arms");
-        mgSpinner.add("Legs");
+        mgSpinner.add("chest");
+        mgSpinner.add("back");
+        mgSpinner.add("arms");
+        mgSpinner.add("legs");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(),android.R.layout.simple_spinner_item, mgSpinner){
             @Override
@@ -300,10 +308,28 @@ public class StrengthFragment extends Fragment {
     }
 
     /*-------------------------------------filter list based on Toggle Button picked-------------------------------*/
-    public void filterList(String muscleGroup){
+    public void filterList(String muscleGroup, DataSnapshot snapshot, View view){
         FirebaseUser user = mFirebaseAuth.getCurrentUser();
         String userID = user.getUid();
-        //DataSnapshot itemsByMuscleGroup = child("ExerChars").child(userID).child("Strength");
+        List<String> newList = new ArrayList<>();
+        newList.add("choose an Exercise for "+muscleGroup);
+        //snap shot passed is the snapshot of everything below "Strength" in "ExerChars" branch of DB
+        for (DataSnapshot exers : snapshot.getChildren()){
+            //exers is each individual exercise found under strength
+            for (DataSnapshot chars : exers.getChildren()){
+                //get each exercise's characteristics
+                if(chars.getValue().equals(muscleGroup)){
+                    newList.add(exers.getKey());
+                }
+
+            }
+        }
+        newList.add("Add New Exercise");
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, newList);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        exerDropDownOnChange.setAdapter(dataAdapter);
+
 
 
 
@@ -320,7 +346,7 @@ public class StrengthFragment extends Fragment {
 
 
     /*-------------------------------------SetUp all muscle group Buttons-------------------------------*/
-    public void buttonSetUp(View view){
+    public void buttonSetUp(View view, final DataSnapshot snapshot){
 
         chestBtn = (ToggleButton) view.findViewById(R.id.chestBtn);
         backBtn = (ToggleButton) view.findViewById(R.id.backBtn);
@@ -332,9 +358,9 @@ public class StrengthFragment extends Fragment {
             public void onClick(View view) {
                 //Toast.makeText(getActivity(), "TESTING BUTTON CLICK 1",Toast.LENGTH_SHORT).show();
                 btnToggle(chestBtn);
-                //if(chestBtn.isChecked()){
-                    //filterList();
-                //}
+                if(chestBtn.isChecked()){
+                    filterList(chestBtn.getText().toString(), snapshot, view);
+                }
             }
         });
 
@@ -343,6 +369,9 @@ public class StrengthFragment extends Fragment {
             public void onClick(View view) {
                 //Toast.makeText(getActivity(), "TESTING BUTTON CLICK 1",Toast.LENGTH_SHORT).show();
                 btnToggle(backBtn);
+                if(backBtn.isChecked()){
+                    filterList(backBtn.getText().toString(), snapshot, view);
+                }
             }
         });
         armsBtn.setOnClickListener(new View.OnClickListener() {
@@ -350,6 +379,9 @@ public class StrengthFragment extends Fragment {
             public void onClick(View view) {
                 //Toast.makeText(getActivity(), "TESTING BUTTON CLICK 1",Toast.LENGTH_SHORT).show();
                 btnToggle(armsBtn);
+                if(armsBtn.isChecked()){
+                    filterList(armsBtn.getText().toString(), snapshot, view);
+                }
             }
         });
         legsBtn.setOnClickListener(new View.OnClickListener() {
@@ -357,6 +389,9 @@ public class StrengthFragment extends Fragment {
             public void onClick(View view) {
                 //Toast.makeText(getActivity(), "TESTING BUTTON CLICK 1",Toast.LENGTH_SHORT).show();
                 btnToggle(legsBtn);
+                if(legsBtn.isChecked()){
+                    filterList(legsBtn.getText().toString(), snapshot, view);
+                }
             }
         });
 
