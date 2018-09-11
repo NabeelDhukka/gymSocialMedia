@@ -10,10 +10,11 @@
 
     <Spinner
         android:id="@+id/strengthSpinner"
-        android:layout_width="343dp"
+        android:layout_width="338dp"
         android:layout_height="42dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/rounded_entry_box"
+        android:popupBackground="@drawable/rounded_entry_box"
         android:textColor="#dedede"
         android:textColorHint="#b5b5b5"
         app:layout_constraintBottom_toTopOf="@+id/strengthReps"
@@ -24,22 +25,23 @@
 
     <ToggleButton
         android:id="@+id/chestBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/toggle_selector"
         android:checked="false"
         android:text="ToggleButton"
+        android:textColor="#eaeaea"
         android:textOff="chest"
         android:textOn="chest"
-        app:layout_constraintBaseline_toBaselineOf="@+id/backBtn"
         app:layout_constraintEnd_toStartOf="@+id/backBtn"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/toggle_selector"
-        android:textColor="#eaeaea"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ToggleButton
         android:id="@+id/backBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/toggle_selector"
@@ -54,37 +56,37 @@
 
     <ToggleButton
         android:id="@+id/armsBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/toggle_selector"
         android:checked="false"
         android:text="ToggleButton"
+        android:textColor="#eaeaea"
         android:textOff="arms"
         android:textOn="arms"
         app:layout_constraintEnd_toStartOf="@+id/legsBtn"
         app:layout_constraintStart_toEndOf="@+id/backBtn"
-        app:layout_constraintTop_toTopOf="@+id/backBtn"
-        android:background="@drawable/toggle_selector"
-        android:textColor="#eaeaea"/>
+        app:layout_constraintTop_toTopOf="@+id/backBtn" />
 
     <ToggleButton
         android:id="@+id/legsBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/toggle_selector"
         android:checked="false"
         android:text="ToggleButton"
+        android:textColor="#eaeaea"
         android:textOff="legs"
         android:textOn="legs"
         app:layout_constraintBaseline_toBaselineOf="@+id/armsBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/armsBtn"
-        android:background="@drawable/toggle_selector"
-        android:textColor="#eaeaea"/>
+        app:layout_constraintStart_toEndOf="@+id/armsBtn" />
 
     <Button
         android:id="@+id/addStrength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="37dp"
         android:background="@drawable/rounded_button"
         android:text="add"
         android:textColor="#eaeaea"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient2">
 
     <TextView
         android:id="@+id/socialTextView"
@@ -12,7 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="HELLO SOCIAL ACTIVITY" />
+        android:text="HELLO SOCIAL ACTIVITY"
+        android:textColor="#969696"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,10 +23,11 @@
         android:id="@+id/botBarContainer">
 
         <android.support.design.widget.BottomNavigationView
+            android:id="@+id/botNavBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/botNavBar"
             android:background="@drawable/grey_border_top"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
             app:menu="@menu/bot_nav_bar_items">
 
         </android.support.design.widget.BottomNavigationView>

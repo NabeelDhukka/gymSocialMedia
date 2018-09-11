@@ -21,4 +21,10 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="wha">
+        <item name="android:layout_width">340dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginBottom">412dp</item>
+    </style>
+
 </resources>
