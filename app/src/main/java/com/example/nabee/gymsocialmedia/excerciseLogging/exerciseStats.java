@@ -38,4 +38,5 @@ public class exerciseStats {
     public void setWeight(double weight) {
         this.weight = weight;
     }
+
 }

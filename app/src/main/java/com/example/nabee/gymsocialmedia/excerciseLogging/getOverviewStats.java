@@ -7,7 +7,7 @@ package com.example.nabee.gymsocialmedia.excerciseLogging;
 public class getOverviewStats {
 
 
-    private String name, sets, reps, weight;
+    private String name, sets, reps, weight, dist,time;
 
 
 
@@ -52,5 +52,21 @@ public class getOverviewStats {
 
     public void setWeight(String weight) {
         this.weight = weight;
+    }
+
+    public String getDist() {
+        return dist;
+    }
+
+    public void setDist(String dist) {
+        this.dist = dist;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

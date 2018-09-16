@@ -116,12 +116,20 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
                         else if (stat.getKey().equals("Weight")){
                             newStats.setWeight(stat.getValue().toString());
                         }
+                        else if (stat.getKey().equals("dist")){
+                            newStats.setDist(stat.getValue().toString());
+                        }
+                        else if (stat.getKey().equals("time")){
+                            newStats.setTime(stat.getValue().toString());
+                        }
                     }
                     Log.d(TAG, "fillListView: ARRAY LIST STARTING HERE!!!!!!!!!!!!!!!!!!!!!");
                     Log.d(TAG, "fillListView: ARRAY LIST name ----------------------------->"+newStats.getName());
                     Log.d(TAG, "fillListView: ARRAY LIST reps ----------------------------->"+newStats.getReps());
                     Log.d(TAG, "fillListView: ARRAY LIST sets ----------------------------->"+newStats.getSets());
                     Log.d(TAG, "fillListView: ARRAY LIST weight ----------------------------->"+newStats.getWeight());
+
+
                     customEntry.add(newStats);
 
                 }

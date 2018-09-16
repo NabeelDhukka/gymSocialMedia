@@ -12,50 +12,50 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="38dp"
-        android:textColor="#eaeaea"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="16dp" />
 
     <TextView
-        android:id="@+id/weightHeader"
+        android:id="@+id/timeHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="18dp"
-        android:text="Weight"
-        android:textColor="#eaeaea"
+        android:text="Time"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="18dp" />
 
     <TextView
-        android:id="@+id/setRepHeader"
+        android:id="@+id/distHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="18dp"
-        android:text="Sets/Reps"
-        android:textColor="#eaeaea"
-        app:layout_constraintEnd_toStartOf="@+id/weightHeader"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Distance"
+        app:layout_constraintEnd_toStartOf="@+id/timeHeader"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="18dp" />
 
     <TextView
-        android:id="@+id/setRepValue"
+        android:id="@+id/distValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="22dp"
-        android:textColor="#cecece"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/setRepHeader"
-        app:layout_constraintTop_toBottomOf="@+id/setRepHeader" />
+        app:layout_constraintStart_toStartOf="@+id/distHeader"
+        app:layout_constraintTop_toBottomOf="@+id/distHeader"
+        android:layout_marginLeft="14dp" />
 
     <TextView
-        android:id="@+id/weightValue"
+        android:id="@+id/timeValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="23dp"
-        android:textColor="#cecece"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/weightHeader"
-        app:layout_constraintTop_toBottomOf="@+id/weightHeader" />
+        app:layout_constraintStart_toStartOf="@+id/timeHeader"
+        app:layout_constraintTop_toBottomOf="@+id/timeHeader"
+        android:layout_marginLeft="2dp" />
 </android.support.constraint.ConstraintLayout>

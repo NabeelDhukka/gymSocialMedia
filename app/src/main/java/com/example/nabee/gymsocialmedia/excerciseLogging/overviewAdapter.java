@@ -8,12 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nabee.gymsocialmedia.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,19 +35,39 @@ public class overviewAdapter extends ArrayAdapter<getOverviewStats> {
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             View listItem = convertView;
-            if(listItem == null)
-                listItem = LayoutInflater.from(mContext).inflate(R.layout.list_item,parent,false);
+
 
             getOverviewStats currentExer = statList.get(position);
 
-            TextView liName = (TextView) listItem.findViewById(R.id.nameLi);
-            liName.setText(currentExer.getName());
+            if(listItem == null) {
+                if (statList.get(position).getWeight() == null && statList.get(position).getSets() == null && statList.get(position).getReps() == null) {
+                    listItem = LayoutInflater.from(mContext).inflate(R.layout.list_item_cardio, parent, false);
 
-            TextView liSetRep = (TextView) listItem.findViewById(R.id.setRepValue);
-            liSetRep.setText(currentExer.getSets()+"/"+currentExer.getReps());
+                    TextView liName = (TextView) listItem.findViewById(R.id.nameLi);
+                    liName.setText(currentExer.getName());
 
-            TextView liWeight = (TextView) listItem.findViewById(R.id.weightValue);
-            liWeight.setText(currentExer.getWeight());
+                    TextView liDist = (TextView) listItem.findViewById(R.id.distValue);
+                    liDist.setText(currentExer.getDist());
+
+                    TextView liTime = (TextView) listItem.findViewById(R.id.timeValue);
+                    liTime.setText(currentExer.getTime());
+
+                } else {
+                    listItem = LayoutInflater.from(mContext).inflate(R.layout.list_item_strength, parent, false);
+
+                    TextView liName = (TextView) listItem.findViewById(R.id.nameLi);
+                    liName.setText(currentExer.getName());
+
+                    TextView liSetRep = (TextView) listItem.findViewById(R.id.setRepValue);
+                    liSetRep.setText(currentExer.getSets()+"/"+currentExer.getReps());
+
+                    TextView liWeight = (TextView) listItem.findViewById(R.id.weightValue);
+                    liWeight.setText(currentExer.getWeight());
+                }
+            }
+
+
+
 
             return listItem;
         }
