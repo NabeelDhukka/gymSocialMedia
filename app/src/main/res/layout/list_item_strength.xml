@@ -14,16 +14,18 @@
         android:layout_marginTop="38dp"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#eaeaea"/>
 
     <TextView
         android:id="@+id/weightHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="18dp"
-        android:text="TextView"
+        android:text="Weight"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#eaeaea"/>
 
     <TextView
         android:id="@+id/setRepHeader"
@@ -32,7 +34,8 @@
         android:layout_marginEnd="18dp"
         android:text="Sets/Reps"
         app:layout_constraintEnd_toStartOf="@+id/weightHeader"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#eaeaea"/>
 
     <TextView
         android:id="@+id/setRepValue"
@@ -42,7 +45,8 @@
         android:layout_marginTop="22dp"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/setRepHeader"
-        app:layout_constraintTop_toBottomOf="@+id/setRepHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/setRepHeader"
+        android:textColor="#eaeaea"/>
 
     <TextView
         android:id="@+id/weightValue"
@@ -52,5 +56,7 @@
         android:layout_marginTop="23dp"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/weightHeader"
-        app:layout_constraintTop_toBottomOf="@+id/weightHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/weightHeader"
+        android:textColor="#eaeaea"/>
+
 </android.support.constraint.ConstraintLayout>

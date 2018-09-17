@@ -10,52 +10,57 @@
         android:id="@+id/nameLi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="38dp"
+        android:textColor="#eaeaea"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="16dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/timeHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
         android:text="Time"
+        android:textColor="#eaeaea"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="18dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/distHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
         android:text="Distance"
+        android:textColor="#eaeaea"
         app:layout_constraintEnd_toStartOf="@+id/timeHeader"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="18dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/distValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
         android:layout_marginStart="14dp"
         android:layout_marginTop="22dp"
+        android:textColor="#eaeaea"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/distHeader"
-        app:layout_constraintTop_toBottomOf="@+id/distHeader"
-        android:layout_marginLeft="14dp" />
+        app:layout_constraintTop_toBottomOf="@+id/distHeader" />
 
     <TextView
         android:id="@+id/timeValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="23dp"
+        android:textColor="#eaeaea"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/timeHeader"
-        app:layout_constraintTop_toBottomOf="@+id/timeHeader"
-        android:layout_marginLeft="2dp" />
+        app:layout_constraintTop_toBottomOf="@+id/timeHeader" />
 </android.support.constraint.ConstraintLayout>

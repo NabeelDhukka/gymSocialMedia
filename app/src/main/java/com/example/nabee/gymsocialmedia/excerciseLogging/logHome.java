@@ -8,9 +8,14 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.example.nabee.gymsocialmedia.R;
@@ -42,7 +47,9 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
     //user input fields
     public BottomNavigationView navigationView;
     public FloatingActionButton inputExer;
+    public Button dateButton;
     public ListView currWorkouts;
+    public PopupWindow mPopupWindow;
 
     //firebase stuff
     private DatabaseReference mref;
@@ -85,6 +92,24 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
                 startActivity(intent1);
             }
         });
+
+        dateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                // Inflate the custom layout/view
+                final View customView = inflater.inflate(R.layout.calendar_popup,null);
+
+                mPopupWindow = new PopupWindow(
+                        customView,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        true
+                );
+                mPopupWindow.showAtLocation(view, Gravity.CENTER,0,0);
+            }
+        });
+
     }
 
     /*--------------------------------------------fill todays exercise to list view----------------------------------------------------*/
@@ -150,6 +175,7 @@ public class logHome extends AppCompatActivity implements BottomNavigationView.O
     public void init(){
 
         inputExer = (FloatingActionButton)findViewById(R.id.logExer);
+        dateButton = (Button)findViewById(R.id.dateButton);
         currWorkouts = (ListView)findViewById(R.id.todaysExerList);
 
 
